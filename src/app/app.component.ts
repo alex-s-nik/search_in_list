@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
+
+import { SearchService } from './search.service';
 import { SearchComponent } from './search/search.component';
 
 @Component({
@@ -10,6 +12,20 @@ import { SearchComponent } from './search/search.component';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
-  title = 'seach_in_list';
+export class AppComponent implements OnInit{
+  public items: string[] = [];
+
+  constructor(private _searchService: SearchService) { }
+
+  ngOnInit(): void {
+      this.items = this._searchService.getData();
+  }
+
+  selectedItemHandler(event: string) {
+    console.log('Selected item: %s', event);
+  }
+
+  searchPatternHandler(event: string) {
+    this.items = this._searchService.filterData(event);
+  }
 }
