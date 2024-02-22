@@ -18,4 +18,14 @@ export class SearchComponent implements OnInit{
   ngOnInit(): void {
       this.items = this._searchService.getData();
   }
+
+  changeSearchFieldHandler(event: Event): void {
+    const filterPattern: string = (event.target as HTMLInputElement).value;
+    this.filterItems(filterPattern);
+  }
+
+  filterItems(filterPattern: string): void {
+    this.items = this._searchService.filterData(filterPattern);
+    this.items.sort();
+  }
 }

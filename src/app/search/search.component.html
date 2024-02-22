@@ -1,8 +1,12 @@
-<table class="table">
-  <tbody>
-    <tr *ngFor="let item of items">
-      <td>{{ item }}</td>
-    </tr>
-  </tbody>
-</table>
-<input type="text" name="" id="" />
+<div class="vh-100">
+  <div class="h-50 overflow-auto">
+    <table class="table">
+      <tbody>
+        <tr *ngFor="let item of items">
+          <td>{{ item }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <input (input)="changeSearchFieldHandler($event)" type="text" name="" id="" />
+</div>
